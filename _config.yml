@@ -10,7 +10,7 @@
 locale                   : "en-US"
 title                    : "Xie Yuanrui's Personal Page"
 title_separator          : "-"
-name                     : &name "Xie Yuanrui"
+name                     : &name "Your Name"
 description              : &description "personal description"
 url                      : https://academicpages.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
