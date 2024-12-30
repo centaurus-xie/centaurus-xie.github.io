@@ -23,20 +23,20 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Xie Yuanrui"
-  pronouns         : # example: "they/them"  
+  pronouns         : "they/them"  
   bio              : "A poet, traveler, photographer, producer, and rock musician delayed by coding"
   location         : "Nanjing, China, Earth"
-  employer         : "Xi'an Jiaotong University University"
-  uri              : https://www.xjtu.com
+  employer         : "Xi'an Jiaotong University"
+  uri              : # https://www.xjtu.com
   email            : "xie_yuanrui@163.com" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : # "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
   impactstory      : # URL
-  orcid            : "http://orcid.org/yourorcidurl"
+  orcid            : # "http://orcid.org/yourorcidurl"
   semantic         : # URL
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
+  pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   researchgate     : # URL
   scopus           : # URL
 
@@ -72,7 +72,7 @@ author:
   wikipedia        : # Username
   xing             : # Username
   youtube          : # Username
-  zhihu            : # Username
+  zhihu            : https://www.zhihu.com/people/xyr18th
 
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
