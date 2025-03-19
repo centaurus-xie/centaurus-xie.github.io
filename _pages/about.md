@@ -16,6 +16,6 @@ I'm a third year undergraduate student from [School of Software Engineering](htt
 
 👀 Also interested in Travelling & History & Biology & Earth Science & Photographing & ...  
 
-📫 How to reach me: centaurusxie@foxmail.com || xie_yuanrui@163.com  
+📫 How to reach me: centaurusxie@foxmail.com or xie_yuanrui@163.com  
 
 
