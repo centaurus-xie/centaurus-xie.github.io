@@ -1,5 +1,5 @@
 ---
-permalink: /
+permalink: /about/
 title: "About me"
 excerpt: "About me"
 author_profile: true
@@ -8,14 +8,8 @@ redirect_from:
   - /about.html
 ---
 
-I'm a third year undergraduate student from [School of Software Engineering](https://se.xjtu.edu.cn/), [Xi'an Jiaotong University](https://www.xjtu.edu.cn/).
+I'm an MSc Information Technology student at [The Hong Kong University of Science and Technology](https://hkust.edu.hk/) with a BEng in Software Engineering from [Xi'an Jiaotong University](https://www.xjtu.edu.cn/).
 
-🌐 Interested in web development, cloud computing, and AI  
+My interests sit across software engineering, applied AI, product thinking, and visual storytelling.
 
-📚 Always eager to learn new technologies and improve my skills  
-
-👀 Also interested in Travelling & History & Biology & Earth Science & Photographing & ...  
-
-📫 How to reach me: centaurusxie@foxmail.com or xie_yuanrui@163.com  
-
-
+You can reach me at [yr.xie@connect.ust.hk](mailto:yr.xie@connect.ust.hk).
