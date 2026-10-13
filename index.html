@@ -3,81 +3,97 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1628">
-  <meta name="description" content="Yuanrui Xie is an MSc Information Technology student at HKUST, working across software, AI and thoughtful digital products.">
-  <title>Yuanrui Xie — Software, AI &amp; Digital Products</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@1,6..72,500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/home.css">
-  <script src="/assets/js/home.js" defer></script>
+  <meta name="theme-color" content="#172c43">
+  <meta name="description" content="Explore Yuanrui Xie's personal desktop. MSc Information Technology at HKUST, software engineering, applied AI and visual storytelling.">
+  <title>Yuanrui Xie — Personal Desktop</title>
+  <link rel="icon" href="/images/desktop-favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/home.css?v=desktop-1">
+  <script src="/assets/js/home.js?v=desktop-1" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header" aria-label="Primary navigation">
-    <a class="wordmark" href="#top" aria-label="Yuanrui Xie, home"><span>YX</span><i></i><b>Yuanrui Xie</b></a>
-    <nav><a href="#about">About</a><a href="#education">Education</a><a href="#contact">Contact</a></nav>
+<body data-wallpaper="coast">
+  <a class="skip-link" href="#about-content">Skip to profile</a>
+  <svg class="symbol-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-profile" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol>
+    <symbol id="icon-education" viewBox="0 0 24 24"><path d="m2 8 10-5 10 5-10 5-10-5Zm4 2v7c4 3 8 3 12 0v-7M22 8v9"/></symbol>
+    <symbol id="icon-skills" viewBox="0 0 24 24"><path d="m7 6-6 6 6 6m10-12 6 6-6 6M14 3l-4 18"/></symbol>
+    <symbol id="icon-contact" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></symbol>
+    <symbol id="icon-terminal" viewBox="0 0 24 24"><path d="m4 6 6 6-6 6m9 0h7"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24"><path d="m10 2-.5 3-2 1.1-2.8-1-2 3.5L5 10.5v3l-2.3 1.9 2 3.5 2.8-1 2 1.1.5 3h4l.5-3 2-1.1 2.8 1 2-3.5-2.3-1.9v-3l2.3-1.9-2-3.5-2.8 1-2-1.1L14 2Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="icon-folder" viewBox="0 0 64 54"><path fill="#82d7ff" d="M4 4h20l7 7h29a4 4 0 0 1 4 4v34a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5V9a5 5 0 0 1 4-5Z"/><path fill="#41aaf0" d="M0 19a5 5 0 0 1 5-5h54a5 5 0 0 1 5 5v30a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5Z"/><path fill="#b8ecff" opacity=".7" d="M5 15h54v2H5z"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol>
+  </svg>
+
+  <header class="menu-bar">
+    <div class="menu-bar__left">
+      <div class="desktop-menu">
+        <button class="brand-button" id="desktop-menu-button" aria-label="Desktop menu" aria-expanded="false" aria-controls="desktop-menu">yx<span>.</span></button>
+        <div class="menu-popover" id="desktop-menu" hidden><p>Yuanrui’s personal desktop</p><button data-open="about">About Yuanrui <span>↗</span></button><button data-open="settings">Desktop settings <span>↗</span></button><hr><button id="restore-desktop">Restore window layout</button><button id="show-help">How to use this desktop</button></div>
+      </div>
+      <span class="menu-bar__app" id="active-app-name">About me</span>
+      <nav class="menu-nav" aria-label="Open an application"><button data-open="education">Education</button><button data-open="skills">Skills</button><button data-open="contact">Contact</button></nav>
+    </div>
+    <div class="menu-bar__right"><span class="location-label">Hong Kong</span><button id="search-button" class="menu-icon" aria-label="Search applications (Command or Control K)"><svg><use href="#icon-search"/></svg></button><button class="menu-icon settings-shortcut" data-open="settings" aria-label="Desktop settings"><svg><use href="#icon-settings"/></svg></button><time id="desktop-clock" aria-label="Current time in Hong Kong"></time></div>
   </header>
 
-  <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero__copy">
-        <p class="eyebrow reveal">Hong Kong · Software &amp; AI</p>
-        <h1 id="hero-title" class="reveal delay-1">I build at the meeting point of <em>logic</em> and lived experience.</h1>
-        <p class="hero__intro reveal delay-2">I’m Yuanrui Xie <span lang="zh-Hant">謝遠睿</span>, an Information Technology postgraduate at HKUST with a background in software engineering.</p>
-        <div class="hero__actions reveal delay-3">
-          <a class="button" href="mailto:yr.xie@connect.ust.hk">Start a conversation</a>
-          <a class="text-link" href="#about">More about me <span aria-hidden="true">↓</span></a>
-        </div>
+  <main class="desktop" id="desktop" aria-label="Yuanrui Xie's personal desktop">
+    <div class="desktop-intro"><span class="desktop-intro__eyebrow">PERSONAL DESKTOP / 01</span><p>A space to get<br>to know me.</p><span>Open a window. Take a look around.</span></div>
+    <div class="desktop-files" aria-label="Desktop shortcuts"><button class="desktop-file" data-open="about"><span class="file-portrait"><img src="/images/yuanrui-xie-portrait.jpg" width="3600" height="5400" alt=""></span><span>About me</span></button><button class="desktop-file" data-open="education"><svg class="folder-icon"><use href="#icon-folder"/></svg><span>Education</span></button><button class="desktop-file" data-open="contact"><span class="file-mail"><svg><use href="#icon-contact"/></svg></span><span>Say hello</span></button></div>
+
+    <section class="app-window about-window" id="window-about" data-app="about" aria-labelledby="title-about">
+      <header class="window-titlebar"><div class="window-controls"><button class="traffic-light close" data-action="close" aria-label="Close About me"></button><button class="traffic-light minimize" data-action="minimize" aria-label="Minimize About me"></button><button class="traffic-light maximize" data-action="maximize" aria-label="Maximize About me"></button></div><h2 id="title-about">About me</h2><span class="titlebar-detail">Personal</span></header>
+      <div class="finder-layout">
+        <aside class="finder-sidebar" aria-label="Profile navigation"><p class="sidebar-label">Favourites</p><button class="sidebar-item selected" data-open="about"><svg><use href="#icon-profile"/></svg>About me</button><button class="sidebar-item" data-open="education"><svg><use href="#icon-education"/></svg>Education</button><button class="sidebar-item" data-open="skills"><svg><use href="#icon-skills"/></svg>Skills</button><button class="sidebar-item" data-open="contact"><svg><use href="#icon-contact"/></svg>Contact</button><p class="sidebar-label sidebar-label--second">Workspace</p><button class="sidebar-item" data-open="terminal"><svg><use href="#icon-terminal"/></svg>Terminal</button><div class="sidebar-bottom"><span class="status-dot"></span> Based in Hong Kong</div></aside>
+        <div class="profile-content" id="about-content" tabindex="-1"><div class="profile-copy"><p class="content-eyebrow">Hello, I’m</p><h1>Yuanrui Xie<span lang="zh-Hant">謝遠睿</span></h1><p class="profile-degree">MSc Information Technology<br>The Hong Kong University of Science and Technology</p><p class="profile-description">A software engineering graduate exploring applied AI, thoughtful digital products and visual storytelling.</p><div class="profile-tags"><span>Software</span><span>AI &amp; data</span><span>Creative thinking</span></div><button class="primary-button" data-open="contact">Let’s connect <svg><use href="#icon-arrow"/></svg></button></div><figure class="profile-photo"><img src="/images/yuanrui-xie-portrait.jpg" width="3600" height="5400" alt="Yuanrui Xie wearing a navy blazer"><figcaption>Yuanrui Xie <span>Hong Kong</span></figcaption></figure></div>
       </div>
-      <div class="portrait reveal delay-2">
-        <div class="portrait__frame"><img src="/images/yuanrui-xie-portrait.jpg" alt="Portrait of Yuanrui Xie" width="3600" height="5400"></div>
-        <div class="portrait__note" aria-hidden="true"><span>HK</span><span>22.34° N</span></div>
-      </div>
-      <div class="hero__index" aria-hidden="true"><span>01</span><span>Portfolio / 2026</span></div>
+      <footer class="window-status"><span>Software, AI &amp; a curious mind.</span><span>About / 2026</span></footer>
     </section>
 
-    <section class="statement" id="about" aria-labelledby="about-title">
-      <div class="section-label"><span>02</span><p id="about-title">About</p></div>
-      <div>
-        <p class="statement__lead scroll-reveal">Curious by nature, technical by training. I care about turning complex systems into <em>clear, useful experiences.</em></p>
-        <div class="statement__details scroll-reveal">
-          <p>My interests sit across software engineering, AI-enabled products and human-centred design. I enjoy moving between structured problem-solving and visual storytelling—seeing both as ways to make ideas easier to understand.</p>
-          <ul class="disciplines" aria-label="Areas of interest">
-            <li><span>01</span> Software systems</li><li><span>02</span> Applied AI</li><li><span>03</span> Product thinking</li><li><span>04</span> Visual storytelling</li>
-          </ul>
-        </div>
-      </div>
+    <section class="app-window education-window" id="window-education" data-app="education" aria-labelledby="title-education" hidden>
+      <header class="window-titlebar"><div class="window-controls"><button class="traffic-light close" data-action="close" aria-label="Close Education"></button><button class="traffic-light minimize" data-action="minimize" aria-label="Minimize Education"></button><button class="traffic-light maximize" data-action="maximize" aria-label="Maximize Education"></button></div><h2 id="title-education">Education</h2><span class="titlebar-detail">2 records</span></header>
+      <div class="window-body education-body"><p class="content-eyebrow">The learning journey</p><h3>Built on curiosity.</h3><div class="education-record"><span class="school-symbol">HK<br>UST</span><div><p class="record-period">SEP 2026 — PRESENT <span>Current</span></p><h4>The Hong Kong University of<br class="desktop-break"> Science and Technology</h4><p>MSc in Information Technology</p><span class="record-location">Hong Kong</span></div></div><div class="education-record"><span class="school-symbol school-symbol--red">XJ<br>TU</span><div><p class="record-period">SEP 2022 — JUN 2026</p><h4>Xi’an Jiaotong University</h4><p>BEng in Software Engineering</p><span class="scholarship">University Scholarship</span></div></div></div>
+      <footer class="window-status"><span>Education</span><span>2 institutions</span></footer>
     </section>
 
-    <section class="education" id="education" aria-labelledby="education-title">
-      <div class="education__inner">
-        <div class="section-label section-label--light"><span>03</span><p id="education-title">Education</p></div>
-        <div class="education__list">
-          <article class="education__item scroll-reveal"><p class="education__period">2026 — Present</p><div><h2>The Hong Kong University of Science and Technology</h2><p>MSc in Information Technology</p></div><span class="education__place">Hong Kong</span></article>
-          <article class="education__item scroll-reveal"><p class="education__period">2022 — 2026</p><div><h2>Xi’an Jiaotong University</h2><p>BEng in Software Engineering · University Scholarship</p></div><span class="education__place">Xi’an</span></article>
-        </div>
-      </div>
+    <section class="app-window skills-window" id="window-skills" data-app="skills" aria-labelledby="title-skills" hidden>
+      <header class="window-titlebar"><div class="window-controls"><button class="traffic-light close" data-action="close" aria-label="Close Skills"></button><button class="traffic-light minimize" data-action="minimize" aria-label="Minimize Skills"></button><button class="traffic-light maximize" data-action="maximize" aria-label="Maximize Skills"></button></div><h2 id="title-skills">Skills</h2><span class="titlebar-detail">Toolkit</span></header>
+      <div class="window-body skills-body"><p class="content-eyebrow">Tools for ideas</p><h3>Build. Explore. Communicate.</h3><div class="skill-group"><span class="skill-category">01 / Programming &amp; systems</span><div class="skill-chips"><span>Python</span><span>Java</span><span>C++</span><span>JavaScript</span><span>SQL</span><span>Linux</span></div></div><div class="skill-group"><span class="skill-category">02 / AI &amp; data</span><div class="skill-chips"><span>RAG</span><span>Agent workflows</span><span>Prompt engineering</span></div></div><div class="skill-group"><span class="skill-category">03 / Design &amp; storytelling</span><div class="skill-chips"><span>Figma</span><span>Axure</span><span>Premiere Pro</span><span>Videography</span></div></div><div class="language-row"><span>Languages</span><p>Mandarin · native<br>English · proficient, IELTS 7.0<br>Cantonese · learning</p></div></div>
+      <footer class="window-status"><span>Always learning</span><span>Personal toolkit</span></footer>
     </section>
 
-    <section class="toolkit" aria-labelledby="toolkit-title">
-      <div class="section-label"><span>04</span><p id="toolkit-title">Toolkit</p></div>
-      <div class="toolkit__content">
-        <p class="toolkit__intro scroll-reveal">A flexible toolkit for building, testing and communicating ideas.</p>
-        <div class="toolkit__groups scroll-reveal">
-          <div><h2>Programming</h2><p>Python · Java · C++ · JavaScript · SQL · Linux</p></div>
-          <div><h2>AI &amp; data</h2><p>RAG · Agent workflows · Prompt engineering</p></div>
-          <div><h2>Languages</h2><p>Mandarin · English · Cantonese</p></div>
-        </div>
-      </div>
+    <section class="app-window contact-window" id="window-contact" data-app="contact" aria-labelledby="title-contact" hidden>
+      <header class="window-titlebar"><div class="window-controls"><button class="traffic-light close" data-action="close" aria-label="Close Contact"></button><button class="traffic-light minimize" data-action="minimize" aria-label="Minimize Contact"></button><button class="traffic-light maximize" data-action="maximize" aria-label="Maximize Contact"></button></div><h2 id="title-contact">Contact</h2><span class="titlebar-detail">Say hello</span></header>
+      <div class="window-body contact-body"><div class="contact-avatar"><img src="/images/yuanrui-xie-portrait.jpg" alt="" width="3600" height="5400"></div><p class="content-eyebrow">Good things start with a conversation</p><h3>Let’s connect.</h3><p class="contact-description">For ideas, opportunities or a friendly hello.</p><div class="contact-card"><span>Email</span><a href="mailto:yr.xie@connect.ust.hk">yr.xie@connect.ust.hk <svg><use href="#icon-arrow"/></svg></a><button id="copy-email" class="copy-button" aria-label="Copy email address">Copy</button></div><a class="linkedin-link" href="https://www.linkedin.com/in/cyrus-tse-yuanrui" target="_blank" rel="noopener noreferrer me"><span class="linkedin-symbol">in</span><span>Find me on LinkedIn<small>cyrus-tse-yuanrui</small></span><svg><use href="#icon-arrow"/></svg></a></div>
+      <footer class="window-status"><span>Hong Kong</span><span>Email &amp; LinkedIn</span></footer>
     </section>
 
-    <section class="contact" id="contact" aria-labelledby="contact-title">
-      <p class="eyebrow">Open to thoughtful conversations</p>
-      <h2 id="contact-title">Have an idea worth<br><em>building together?</em></h2>
-      <div class="contact__links"><a href="mailto:yr.xie@connect.ust.hk">yr.xie@connect.ust.hk <span>↗</span></a><a href="https://www.linkedin.com/in/cyrus-tse-yuanrui" rel="me">LinkedIn <span>↗</span></a></div>
+    <section class="app-window terminal-window" id="window-terminal" data-app="terminal" aria-labelledby="title-terminal" hidden>
+      <header class="window-titlebar"><div class="window-controls"><button class="traffic-light close" data-action="close" aria-label="Close Terminal"></button><button class="traffic-light minimize" data-action="minimize" aria-label="Minimize Terminal"></button><button class="traffic-light maximize" data-action="maximize" aria-label="Maximize Terminal"></button></div><h2 id="title-terminal">Terminal — yuanrui</h2><span class="titlebar-detail">Local playground</span></header>
+      <div class="terminal-body"><div id="terminal-output" role="log" aria-label="Terminal output"><p class="terminal-ascii" aria-hidden="true">YX<span>.</span></p><p>Welcome to my little corner of the web.<br>Type <strong>help</strong> to explore. No shell, just curiosity.</p></div><form id="terminal-form" autocomplete="off"><label for="terminal-input">yuanrui<span>@desktop</span> <b>~ %</b></label><input id="terminal-input" name="command" aria-label="Terminal command" spellcheck="false" autocapitalize="off" maxlength="100"></form></div>
     </section>
+
+    <section class="app-window settings-window" id="window-settings" data-app="settings" aria-labelledby="title-settings" hidden>
+      <header class="window-titlebar"><div class="window-controls"><button class="traffic-light close" data-action="close" aria-label="Close Desktop settings"></button><button class="traffic-light minimize" data-action="minimize" aria-label="Minimize Desktop settings"></button><button class="traffic-light maximize" data-action="maximize" aria-label="Maximize Desktop settings"></button></div><h2 id="title-settings">Desktop settings</h2><span class="titlebar-detail">Make yourself at home</span></header>
+      <div class="window-body settings-body"><p class="content-eyebrow">Your view, your choice</p><h3>A change of scenery.</h3><fieldset class="wallpaper-options"><legend>Wallpaper</legend><label><input type="radio" name="wallpaper" value="coast" checked><span class="wallpaper-swatch swatch-coast"></span><b>Golden coast</b></label><label><input type="radio" name="wallpaper" value="dawn"><span class="wallpaper-swatch swatch-dawn"></span><b>Morning light</b></label><label><input type="radio" name="wallpaper" value="night"><span class="wallpaper-swatch swatch-night"></span><b>After hours</b></label></fieldset><label class="motion-setting"><span>Reduce animation<small>A calmer desktop experience</small></span><input id="reduce-motion" type="checkbox" role="switch"></label><button class="secondary-button" id="reset-windows">Restore window layout</button><p class="settings-note">Appearance preferences are saved in this browser.</p></div>
+      <footer class="window-status"><span>A personal website inspired by macOS</span><span>YX Desktop 1.0</span></footer>
+    </section>
+
+    <div class="desktop-caption"><span class="status-dot"></span> MSc IT @ HKUST <span class="caption-separator">/</span> Made with curiosity</div><div class="desktop-hint">Click an app to explore <span>⌘ K</span></div>
   </main>
-  <footer><p>Yuanrui Xie · <span lang="zh-Hant">謝遠睿</span></p><p>Designed with intention. <span id="year">2026</span></p><a href="#top">Back to top ↑</a></footer>
+
+  <nav class="dock" aria-label="Application dock">
+    <button class="dock-item" data-open="about" aria-label="Open About me"><span class="dock-tooltip">About me</span><span class="app-icon app-icon--finder"><span class="finder-face"></span></span><span class="dock-indicator"></span></button>
+    <button class="dock-item" data-open="education" aria-label="Open Education"><span class="dock-tooltip">Education</span><span class="app-icon app-icon--education"><svg><use href="#icon-education"/></svg></span><span class="dock-indicator"></span></button>
+    <button class="dock-item" data-open="skills" aria-label="Open Skills"><span class="dock-tooltip">Skills</span><span class="app-icon app-icon--skills"><svg><use href="#icon-skills"/></svg></span><span class="dock-indicator"></span></button>
+    <button class="dock-item" data-open="contact" aria-label="Open Contact"><span class="dock-tooltip">Contact</span><span class="app-icon app-icon--mail"><svg><use href="#icon-contact"/></svg></span><span class="dock-indicator"></span></button>
+    <span class="dock-divider" aria-hidden="true"></span>
+    <button class="dock-item" data-open="terminal" aria-label="Open Terminal"><span class="dock-tooltip">Terminal</span><span class="app-icon app-icon--terminal"><svg><use href="#icon-terminal"/></svg></span><span class="dock-indicator"></span></button>
+    <button class="dock-item" data-open="settings" aria-label="Open Desktop settings"><span class="dock-tooltip">Settings</span><span class="app-icon app-icon--settings"><svg><use href="#icon-settings"/></svg></span><span class="dock-indicator"></span></button>
+  </nav>
+
+  <div class="spotlight-backdrop" id="spotlight" hidden><section class="spotlight" role="dialog" aria-modal="true" aria-labelledby="spotlight-title"><h2 class="sr-only" id="spotlight-title">Search applications</h2><div class="spotlight-input-row"><svg><use href="#icon-search"/></svg><input id="spotlight-input" aria-label="Search applications" placeholder="Search this desktop…" autocomplete="off"><button id="close-spotlight" aria-label="Close search">esc</button></div><div id="spotlight-results"></div><p class="spotlight-footer">↑ ↓ to navigate <span>↵ to open</span></p></section></div>
+  <div class="help-backdrop" id="help" hidden><section class="help-panel" role="dialog" aria-modal="true" aria-labelledby="help-title"><p class="content-eyebrow">Welcome to my desktop</p><h2 id="help-title">Make yourself at home.</h2><p>Open an app from the Dock or a desktop shortcut. Drag a window by its title bar, or resize it from the lower-right corner.</p><p>The red button closes, yellow minimizes and green expands. Open a minimized app from the Dock to bring it back.</p><p>Press <kbd>⌘ / Ctrl</kbd> + <kbd>K</kbd> to search. On your phone, apps open one at a time.</p><button class="primary-button" id="close-help">Got it</button></section></div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><style>.dock,.desktop-files,.window-controls,.sidebar-item,.menu-nav,.menu-icon,.brand-button,.primary-button{display:none}.app-window[hidden]{display:flex;position:relative;inset:auto!important;width:min(850px,95%);height:auto;margin:20px auto}.desktop{overflow:auto;height:auto;min-height:100vh}.about-window{position:relative;left:auto;top:auto;width:min(850px,95%);margin:130px auto 20px}.desktop-intro{display:none}body{overflow:auto}</style><p class="noscript-note">Enable JavaScript to explore the interactive desktop. Profile, education, skills and contact information remain available below.</p></noscript>
 </body>
 </html>

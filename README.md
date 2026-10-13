@@ -1,3 +1,31 @@
+# Yuanrui Xie — Personal Desktop
+
+A macOS-inspired personal homepage, published at https://centaurus-xie.github.io.
+The desktop is built with plain HTML, CSS and JavaScript; no npm installation or app server is needed for the homepage.
+
+- `index.html`: profile, education, skills and contact content.
+- `assets/css/home.css`: window layouts, responsive styles, Dock and wallpaper appearance.
+- `assets/js/home.js`: window management, Spotlight, preferences and the browser-local terminal.
+- `images/desktop-coast.svg`: original vector wallpaper.
+- `images/yuanrui-xie-portrait.jpg`: the supplied portrait.
+
+Desktop windows support dragging, resizing, minimizing and maximizing. On screens 760px wide or smaller, one app is shown at a time with scrollable content. `Command/Ctrl + K` opens application search. Settings save only wallpaper and animation preferences in the visitor's browser. Terminal commands are a navigation playground and never execute a shell or contact a backend.
+
+The homepage intentionally omits internship and project details, phone numbers and GPA. Do not add private résumé files to the public repository.
+
+## Publishing
+
+Commit changes and push to the existing `master` branch. Keep the repository's existing GitHub Pages deployment setting; the homepage and its assets are static files and work alongside the retained Jekyll pages. Inspect the Pages deployment in GitHub Actions after pushing.
+
+The previous homepage is recoverable from commit `7175344`. The desktop implementation uses original markup, styles, icons and wallpaper; it does not bundle the third-party macOS portfolio template.
+
+## Retained Jekyll template
+
+The older pages and theme are retained from Academic Pages. Their original setup and attribution documentation follows.
+
+<details>
+<summary>Academic Pages documentation</summary>
+
 # Academic Pages
 **Academic Pages is a Github Pages template for academic websites.**
 
@@ -117,3 +145,5 @@ Unfortunately, one logistical issue with a template theme like Academic Pages th
 [![GitHub stars](https://img.shields.io/github/stars/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io)
 [![GitHub forks](https://img.shields.io/github/forks/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/fork)
 </div>
+
+</details>
