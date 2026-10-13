@@ -20,6 +20,63 @@
   const helpPanel = document.getElementById("help");
   const menu = document.getElementById("desktop-menu");
   const menuButton = document.getElementById("desktop-menu-button");
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function motionAllowed() {
+    return !motionPreference.matches && !document.body.classList.contains("reduce-motion");
+  }
+  function stopWindowMotion(state) {
+    state.animation?.cancel();
+    state.animation = null;
+    state.leaving = false;
+    state.element.inert = false;
+    state.element.removeAttribute("aria-hidden");
+    delete state.element.dataset.motion;
+    delete state.element.dataset.entering;
+  }
+  function animateWindow(state, frames, kind, duration, complete = () => {}) {
+    state.element.dataset.motion = kind;
+    if (kind === "open" || kind === "restore") state.element.dataset.entering = "true";
+    if (!motionAllowed() || !state.element.animate) {
+      delete state.element.dataset.motion;
+      delete state.element.dataset.entering;
+      complete();
+      return;
+    }
+    const animation = state.element.animate(frames, {
+      duration,
+      easing: "cubic-bezier(.22,.8,.24,1)",
+      fill: "both"
+    });
+    state.animation = animation;
+    animation.finished.then(() => {
+      if (state.animation !== animation) return;
+      state.animation = null;
+      delete state.element.dataset.motion;
+      delete state.element.dataset.entering;
+      complete();
+      animation.cancel();
+    }).catch(() => { /* A new interaction can replace an in-flight animation. */ });
+  }
+  function dockTransform(id, rect) {
+    const icon = document.querySelector(`.dock-item[data-open="${id}"] .app-icon`).getBoundingClientRect();
+    return {
+      x: icon.left + icon.width / 2 - (rect.left + rect.width / 2),
+      y: icon.top + icon.height / 2 - (rect.top + rect.height / 2),
+      scaleX: icon.width / rect.width,
+      scaleY: icon.height / rect.height
+    };
+  }
+  function minimizeFrames(id, rect) {
+    const target = dockTransform(id, rect);
+    // Narrow first, then slide into the matching Dock icon.
+    return [
+      { transform: "translate(0,0) scale(1,1)", opacity: 1, offset: 0 },
+      { transform: `translate(${target.x * .35}px,${target.y * .16}px) scale(.66,.98)`, opacity: 1, offset: .32 },
+      { transform: `translate(${target.x * .82}px,${target.y * .65}px) scale(${Math.max(target.scaleX * 2,.15)},.47)`, opacity: .95, offset: .72 },
+      { transform: `translate(${target.x}px,${target.y}px) scale(${target.scaleX},${target.scaleY})`, opacity: 0, offset: 1 }
+    ];
+  }
 
   function readPreference(key) {
     try { return localStorage.getItem(`yx-desktop-${key}`); } catch { return null; }
@@ -44,6 +101,10 @@
     document.body.classList.toggle("reduce-motion", value);
     document.getElementById("reduce-motion").checked = value;
     savePreference("motion", String(value));
+    if (value) {
+      windows.forEach((state) => stopWindowMotion(state));
+      syncDesktop();
+    }
   }
   setWallpaper(readPreference("wallpaper") || "coast");
   setMotion(readPreference("motion") === "true" || window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -70,8 +131,9 @@
   }
   function syncDesktop() {
     windows.forEach((state, id) => {
-      state.element.hidden = !state.open || state.minimized || (mobile.matches && id !== activeApp);
-      state.element.classList.toggle("active", id === activeApp && !state.element.hidden);
+      const visible = state.open && !state.minimized && (!mobile.matches || id === activeApp);
+      state.element.hidden = !visible && !state.leaving;
+      state.element.classList.toggle("active", id === activeApp && visible);
       const dockButton = document.querySelector(`.dock-item[data-open="${id}"]`);
       dockButton.classList.toggle("is-running", state.open);
       dockButton.classList.toggle("is-minimized", state.minimized);
@@ -82,7 +144,7 @@
   }
   function focusWindow(id) {
     const state = windows.get(id);
-    if (!state || !state.open || state.minimized) return;
+    if (!state || !state.open || state.minimized || state.leaving) return;
     if (id !== activeApp) state.element.style.zIndex = String(++layer);
     activeApp = id;
     syncDesktop();
@@ -95,15 +157,25 @@
     const state = windows.get(id);
     if (!state) return;
     closeMenu();
-    const wasHidden = state.element.hidden;
+    const wasHidden = state.element.hidden || state.leaving;
+    const wasMinimized = state.minimized;
+    stopWindowMotion(state);
     state.open = true;
     state.minimized = false;
     state.element.style.zIndex = String(++layer);
     activeApp = id;
     syncDesktop();
     if (wasHidden) {
-      state.element.dataset.entering = "true";
-      setTimeout(() => { delete state.element.dataset.entering; }, 240);
+      if (wasMinimized) {
+        const frames = minimizeFrames(id, state.element.getBoundingClientRect()).reverse().map((frame) => ({ ...frame, offset: 1 - frame.offset }));
+        animateWindow(state, frames, "restore", mobile.matches ? 360 : 460);
+      } else {
+        animateWindow(state, [
+          { opacity: 0, transform: mobile.matches ? "translateY(24px) scale(.98)" : "translateY(18px) scale(.92)", offset: 0 },
+          { opacity: 1, transform: "translateY(-2px) scale(1.008)", offset: .72 },
+          { opacity: 1, transform: "translateY(0) scale(1)", offset: 1 }
+        ], "open", mobile.matches ? 300 : 380);
+      }
     }
     if (focus) {
       const target = id === "terminal" ? document.getElementById("terminal-input") : state.element;
@@ -112,6 +184,12 @@
   }
   function dismissWindow(id, minimize) {
     const state = windows.get(id);
+    if (state.leaving) return;
+    stopWindowMotion(state);
+    const rect = state.element.getBoundingClientRect();
+    state.leaving = true;
+    state.element.inert = true;
+    state.element.setAttribute("aria-hidden", "true");
     if (minimize) state.minimized = true;
     else { state.open = false; state.minimized = false; }
     const candidates = [...windows.entries()].filter(([otherId, other]) => otherId !== id && other.open && !other.minimized);
@@ -119,10 +197,22 @@
     activeApp = candidates[0]?.[0] || null;
     syncDesktop();
     document.querySelector(`.dock-item[data-open="${id}"]`).focus({ preventScroll: true });
+    const frames = minimize ? minimizeFrames(id, rect) : [
+      { transform: "translateY(0) scale(1)", opacity: 1 },
+      { transform: `translateY(${mobile.matches ? "28" : "8"}px) scale(${minimize ? ".94" : ".96"})`, opacity: 0 }
+    ];
+    animateWindow(state, frames, minimize ? "minimize" : "close", minimize ? (mobile.matches ? 360 : 480) : 200, () => {
+      state.leaving = false;
+      state.element.inert = false;
+      state.element.removeAttribute("aria-hidden");
+      syncDesktop();
+    });
   }
   function maximizeWindow(id) {
     if (mobile.matches) return;
     const state = windows.get(id);
+    stopWindowMotion(state);
+    const before = state.element.getBoundingClientRect();
     const control = state.element.querySelector('[data-action="maximize"]');
     if (!state.maximized) {
       state.previousStyle = { left: state.element.style.left, top: state.element.style.top, width: state.element.style.width, height: state.element.style.height };
@@ -133,9 +223,15 @@
     state.element.classList.toggle("is-maximized", state.maximized);
     control.setAttribute("aria-label", `${state.maximized ? "Restore" : "Maximize"} ${apps[id].name}`);
     focusWindow(id);
+    const after = state.element.getBoundingClientRect();
+    animateWindow(state, [
+      { transform: `translate(${before.left - after.left}px,${before.top - after.top}px) scale(${before.width / after.width},${before.height / after.height})`, transformOrigin: "top left" },
+      { transform: "translate(0,0) scale(1,1)", transformOrigin: "top left" }
+    ], "resize", 340);
   }
   function restoreLayout() {
     windows.forEach((state, id) => {
+      stopWindowMotion(state);
       state.open = id === "about";
       state.minimized = false;
       state.maximized = false;
@@ -154,7 +250,10 @@
     element.tabIndex = -1;
     element.style.zIndex = String(++layer);
     defaultPosition(id);
-    element.addEventListener("pointerdown", () => focusWindow(id));
+    element.addEventListener("pointerdown", () => {
+      if (!state.leaving) stopWindowMotion(state);
+      focusWindow(id);
+    });
     element.addEventListener("focusin", () => focusWindow(id));
     element.querySelectorAll("[data-action]").forEach((button) => button.addEventListener("click", () => {
       if (button.dataset.action === "maximize") maximizeWindow(id);
@@ -200,6 +299,7 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
       windows.forEach((state, id) => {
+        stopWindowMotion(state);
         if (state.maximized && !mobile.matches) {
           const area = desktop.getBoundingClientRect();
           state.element.style.width = `${area.width - 24}px`;
@@ -211,6 +311,7 @@
   });
   mobile.addEventListener("change", () => {
     windows.forEach((state, id) => {
+      stopWindowMotion(state);
       state.maximized = false;
       state.element.classList.remove("is-maximized");
       state.element.querySelector('[data-action="maximize"]').setAttribute("aria-label", `Maximize ${apps[id].name}`);

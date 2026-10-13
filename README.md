@@ -6,10 +6,10 @@ The desktop is built with plain HTML, CSS and JavaScript; no npm installation or
 - `index.html`: profile, education, skills and contact content.
 - `assets/css/home.css`: window layouts, responsive styles, Dock and wallpaper appearance.
 - `assets/js/home.js`: window management, Spotlight, preferences and the browser-local terminal.
-- `images/desktop-coast.svg`: original vector wallpaper.
+- `images/hkust-seaview.jpg`: HKUST campus and sea-view wallpaper; attribution in `images/ATTRIBUTION.md`.
 - `images/yuanrui-xie-portrait.jpg`: the supplied portrait.
 
-Desktop windows support dragging, resizing, minimizing and maximizing. On screens 760px wide or smaller, one app is shown at a time with scrollable content. `Command/Ctrl + K` opens application search. Settings save only wallpaper and animation preferences in the visitor's browser. Terminal commands are a navigation playground and never execute a shell or contact a backend.
+Desktop windows support dragging, resizing, minimizing and maximizing. Minimizing narrows the window and moves it into its matching Dock icon; restoring unfolds it back into its previous position. Animations can be interrupted by reopening an app and respect the system's reduced-motion setting as well as the site's toggle. On screens 760px wide or smaller, one app is shown at a time with scrollable content and shorter transitions. `Command/Ctrl + K` opens application search. Settings save only wallpaper and animation preferences in the visitor's browser. Terminal commands are a navigation playground and never execute a shell or contact a backend.
 
 The homepage intentionally omits internship and project details, phone numbers and GPA. Do not add private résumé files to the public repository.
 

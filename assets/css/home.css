@@ -13,9 +13,9 @@
 }
 * { box-sizing: border-box; }
 body { margin: 0; color: var(--ink); background: #315261; overflow: hidden; }
-body::before { content: ""; position: fixed; inset: 0; background: url('/images/desktop-coast.svg') center / cover; transition: filter .5s; }
-body[data-wallpaper="dawn"]::before { filter: hue-rotate(25deg) saturate(.65) brightness(1.15); }
-body[data-wallpaper="night"]::before { filter: hue-rotate(160deg) saturate(.65) brightness(.47); }
+body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(#112c4810, #112c4835), url('/images/hkust-seaview.jpg') center / cover; transition: filter .5s; }
+body[data-wallpaper="dawn"]::before { filter: saturate(.85) brightness(1.12); }
+body[data-wallpaper="night"]::before { filter: saturate(.7) brightness(.48); }
 button, input { font: inherit; }
 button { cursor: pointer; color: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -78,7 +78,8 @@ body[data-wallpaper="night"] .desktop-intro { color: #dbe4e9; }
 /* Windows have independent position, size and stacking. */
 .app-window { display: flex; flex-direction: column; position: absolute; width: 660px; height: 500px; top: 90px; left: calc(50% - 260px); min-width: 420px; min-height: 280px; max-width: calc(100vw - 28px); max-height: calc(100svh - 144px); background: var(--paper); border: 1px solid #fff8; border-radius: 12px; box-shadow: 0 22px 65px #17263442, 0 2px 10px #17263425; overflow: hidden; resize: both; transition: box-shadow .2s; }
 .app-window.active { box-shadow: 0 28px 85px #12223666, 0 3px 12px #17263430; }
-.app-window[data-entering="true"] { animation: window-in .22s ease-out; }
+.app-window[data-motion] { will-change: transform, opacity; resize: none; }
+.app-window[data-motion="minimize"], .app-window[data-motion="restore"] { pointer-events: none; }
 .app-window.is-maximized { resize: none; border-radius: 10px; }
 .about-window { width: 850px; height: 454px; top: 103px; left: calc(50% - 410px); min-width: 750px; }
 .skills-window { height: 558px; width: 590px; }
@@ -158,7 +159,16 @@ body[data-wallpaper="night"] .desktop-intro { color: #dbe4e9; }
 #spotlight-results { padding: 8px; max-height: 370px; overflow: auto; }.search-result { display: flex; align-items: center; gap: 14px; background: transparent; padding: 11px 14px; border-radius: 7px; width: 100%; text-align: left; color: #547189; }.search-result.is-selected, .search-result:hover { color: white; background: #307dc9; }.search-result > span { font-size: 12px; }.search-result small { display: block; font-size: 10px; opacity: .6; margin-top: 3px; }.search-empty { padding: 16px; color: #84939f; font-size: 12px; }.spotlight-footer { display: flex; justify-content: space-between; margin: 0; padding: 10px 20px; font-size: 9px; color: #94a0aa; border-top: 1px solid var(--border); }
 .help-panel { width: min(440px,100%); padding: 30px; border-radius: 13px; background: #fafbfc; box-shadow: 0 30px 80px #09233960; }.help-panel h2 { font-size: 24px; letter-spacing: -.6px; }.help-panel p:not(.content-eyebrow) { font-size: 12px; line-height: 1.8; color: #768390; }.help-panel .primary-button { margin-top: 13px; }.help-panel kbd { background: #e8edf2; padding: 2px 4px; border-radius: 3px; }
 .toast { position: fixed; z-index: 17000; left: 50%; transform: translateX(-50%); bottom: 110px; padding: 12px 20px; border-radius: 9px; font-size: 12px; background: #f5f9fcf2; box-shadow: 0 5px 25px #12273633; }.noscript-note { position: fixed; top: 40px; left: 20px; z-index: 1000; background: white; padding: 12px; }
-@keyframes window-in { from { opacity: 0; } to { opacity: 1; } }
+.wallpaper-swatch { background-image: url('/images/hkust-seaview.jpg'); }
+.swatch-dawn { filter: saturate(.85) brightness(1.12); }
+.swatch-night { filter: saturate(.7) brightness(.48); }
+.wallpaper-credit { position: fixed; right: 33px; bottom: 10px; font-size: 8px; color: #ffffffbe; text-decoration: none; text-shadow: 0 1px 3px #183046; }
+.wallpaper-credit:hover { color: white; text-decoration: underline; }
+.settings-note { line-height: 1.8; }
+.settings-note a { color: #6d8daa; }
+.dock-item.is-minimized .dock-tooltip::before { content: "Restore "; }
+.dock-item.is-minimized .app-icon::after { content: ""; position: absolute; right: -2px; bottom: -1px; width: 16px; height: 12px; border-radius: 3px; border: 1px solid #becbd4; background: linear-gradient(#dbe9f4 0 3px,#f8fbff 3px); box-shadow: 0 1px 3px #122c4a50; }
+@media (max-width: 760px) { .wallpaper-credit { display: none; } }
 @media (min-width: 1700px) { .about-window { top: 145px; } }
 @media (max-height: 700px) and (min-width: 761px) { .about-window { top: 56px; height: 435px; }.desktop-intro { top: 22px; }.desktop-intro p { font-size: 22px; }.profile-content { padding: 20px 28px; } }
 @media (max-width: 1000px) and (min-width: 761px) { .about-window { left: 20px; width: calc(100% - 40px); min-width: 700px; }.desktop-intro p { display: none; }.desktop-intro > span:last-child { display: none; }.desktop-files { display: none; }.desktop-caption, .desktop-hint { display: none; } }
