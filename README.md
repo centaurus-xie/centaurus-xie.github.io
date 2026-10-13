@@ -17,7 +17,7 @@ The homepage intentionally omits internship and project details, phone numbers a
 
 Commit changes and push to the existing `master` branch. Keep the repository's existing GitHub Pages deployment setting; the homepage and its assets are static files and work alongside the retained Jekyll pages. Inspect the Pages deployment in GitHub Actions after pushing.
 
-The previous homepage is recoverable from commit `7175344`. The desktop implementation uses original markup, styles, icons and wallpaper; it does not bundle the third-party macOS portfolio template.
+The previous homepage is recoverable from commit `7175344`. The desktop implementation uses original markup, styles, JavaScript and locally drawn SVG application icons. The desktop interaction concept was inspired by [Mac-OS-Portfolio](https://github.com/tanayvasishtha/Mac-OS-Portfolio), but no code or assets from that repository are bundled here. The wallpaper is a third-party asset with separate attribution and rights notes in `images/ATTRIBUTION.md`; it is not covered by the template's stated MIT license. The app icons are custom macOS-style illustrations, not extracted Apple application assets. University affiliations use plain text, not official emblems. This personal website is not affiliated with or endorsed by Apple or either university.
 
 ## Retained Jekyll template
 
