@@ -2,7 +2,7 @@
 (() => {
   "use strict";
   const apps = {
-    about: { name: "About me", description: "Yuanrui Xie · profile", width: 850, height: 454, icon: "profile" },
+    about: { name: "About me", description: "Yuanrui (Cyrus) Xie · profile", width: 850, height: 454, icon: "profile" },
     education: { name: "Education", description: "HKUST & Xi’an Jiaotong University", width: 660, height: 500, icon: "education" },
     skills: { name: "Skills", description: "Toolkit · programming, AI, design & languages", width: 590, height: 558, icon: "skills" },
     contact: { name: "Contact", description: "Email & LinkedIn", width: 505, height: 485, icon: "contact" },
@@ -454,7 +454,7 @@
     const [verb, argument] = command.toLowerCase().split(/\s+/);
     if (verb === "help") terminalLine("about       Open my profile\neducation   Explore my education\nskills      View my toolkit\ncontact     Say hello\nwhoami      A quick introduction\ndate        Current time in Hong Kong\ntheme       coast / dawn / night\nclear       Clear the terminal");
     else if (["about", "education", "skills", "contact"].includes(verb)) { terminalLine(`Opening ${apps[verb].name}…`); openApp(verb); }
-    else if (verb === "whoami") terminalLine("Yuanrui Xie · 謝遠睿\nMSc Information Technology @ HKUST\nSoftware engineering, applied AI & visual storytelling.");
+    else if (verb === "whoami") terminalLine("Yuanrui (Cyrus) Xie · 謝遠睿\nMSc Information Technology @ HKUST\nSoftware engineering, applied AI & visual storytelling.");
     else if (verb === "date") terminalLine(new Intl.DateTimeFormat("en-GB", { dateStyle: "full", timeStyle: "long", timeZone: "Asia/Hong_Kong" }).format(new Date()));
     else if (verb === "theme") {
       if (["coast", "dawn", "night"].includes(argument)) { setWallpaper(argument); terminalLine(`Wallpaper changed to ${argument}.`); }
