@@ -57,7 +57,7 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .desktop-intro p { margin: 14px 0 10px; font-size: 27px; line-height: 1.12; letter-spacing: -1px; font-weight: 500; }
 .desktop-intro > span:last-child { display: block; max-width: 158px; font-size: 11px; opacity: .75; }
 .desktop-files { position: absolute; top: 29px; right: 30px; display: flex; flex-direction: column; gap: 24px; }
-.desktop-file { display: flex; width: 88px; flex-direction: column; align-items: center; gap: 7px; padding: 5px; background: transparent; border-radius: 8px; color: white; font-size: 11px; text-shadow: 0 1px 4px #112b3b; }
+.desktop-file { display: flex; width: 88px; flex-direction: column; align-items: center; gap: 7px; padding: 5px; background: transparent; border-radius: 8px; color: white; font-size: 11px; text-shadow: 0 1px 4px #112b3b; text-decoration: none; }
 .desktop-file:hover, .desktop-file:focus-visible { background: #ffffff25; }
 .desktop-file > span:last-child { border-radius: 4px; padding: 2px 5px; }
 .desktop-file:hover > span:last-child { background: #276bb575; }
@@ -65,6 +65,10 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .file-portrait { display: block; width: 46px; height: 57px; padding: 3px 3px 9px; border-radius: 3px; background: #f5f3ee; box-shadow: 0 3px 6px #17283840; transform: rotate(-5deg); }
 .file-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
 .desktop-app-icon { width: 51px; height: 51px; filter: drop-shadow(0 3px 3px #17283840); }
+.desktop-app-icon--naiwa { border-radius: 12px; object-fit: cover; background: #fffef7; }
+.desktop-project-icon { position: relative; display: block; width: 51px; height: 51px; }
+.shortcut-badge { position: absolute; right: -3px; bottom: -2px; display: grid; place-items: center; width: 17px; height: 17px; border: 1px solid #c4d1de; border-radius: 5px; background: linear-gradient(#fff,#e5edf4); color: #3c5b7e; box-shadow: 0 1px 3px #17283835; }
+.shortcut-badge svg { width: 11px; height: 11px; stroke-width: 2; }
 .desktop-caption { position: fixed; bottom: 35px; left: 33px; display: flex; align-items: center; gap: 8px; color: #ffffffc9; font-size: 10px; text-shadow: 0 1px 3px #183046; }
 .status-dot { display: inline-block; flex-shrink: 0; width: 6px; height: 6px; background: #5baa87; border-radius: 50%; }
 .desktop-caption .status-dot { background: #bfd6b0; }

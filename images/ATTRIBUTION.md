@@ -19,3 +19,5 @@ The public website uses plain-text university names and abbreviations to identif
 # Desktop application icons
 
 `desktop-icons/*.svg` are locally authored illustrations for this website. They use a macOS-inspired visual language, not files copied from Apple or the Mac-OS-Portfolio repository. Product names and university marks remain the property of their respective owners.
+
+`desktop-icons/naiwa-learn.png` is adapted from the character screenshot supplied by the site owner, using the built-in image editing tool. The edit removes phone-interface elements and frames the character's head and upper body; CSS clips the displayed icon to a rounded rectangle. Rights in the reference character are separate from the website code's license.
